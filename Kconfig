@@ -1,0 +1,110 @@
+menuconfig ZMK_INPUT_AMS_AS5600
+	bool "AMS AS5600 angular position sensor for ZMK"
+	default n
+	depends on DT_HAS_ZMK_INPUT_AMS_AS5600_ENABLED
+	select I2C
+	select ZMK_POINTING
+	help
+	  Enable driver for ams AS5600 Angular position sensor as an input scroll device.
+
+if ZMK_INPUT_AMS_AS5600
+
+config ZMK_INPUT_AMS_AS5600_PERIOD
+	int "Period in milliseconds between sensor reads"
+	default 20
+	help
+	  Sample period in milliseconds
+
+choice ZMK_INPUT_AMS_AS5600_POWER_MODE
+	prompt "Power Mode"
+	default ZMK_INPUT_AMS_AS5600_POWER_MODE_NOM
+
+config ZMK_INPUT_AMS_AS5600_POWER_MODE_NOM
+	bool "NOM: Always on"
+
+config ZMK_INPUT_AMS_AS5600_POWER_MODE_LPM1
+	bool "LPM1: Polling time = 5ms"
+
+config ZMK_INPUT_AMS_AS5600_POWER_MODE_LPM2
+	bool "LPM2: Polling time = 20ms"
+
+config ZMK_INPUT_AMS_AS5600_POWER_MODE_LPM3
+	bool "LPM3: Polling time = 100ms"
+
+endchoice # ZMK_INPUT_AMS_AS5600_POWER_MODE
+
+choice ZMK_INPUT_AMS_AS5600_HYSTERESIS
+	prompt "Hysteresis"
+	default ZMK_INPUT_AMS_AS5600_HYSTERESIS_OFF
+
+config ZMK_INPUT_AMS_AS5600_HYSTERESIS_OFF
+	bool "OFF"
+
+config ZMK_INPUT_AMS_AS5600_HYSTERESIS_1LSB
+	bool "1 LSB"
+
+config ZMK_INPUT_AMS_AS5600_HYSTERESIS_2LSB
+	bool "2 LSBs"
+
+config ZMK_INPUT_AMS_AS5600_HYSTERESIS_3LSB
+	bool "3 LSBs"
+
+endchoice # ZMK_INPUT_AMS_AS5600_HYSTERESIS
+
+choice ZMK_INPUT_AMS_AS5600_SLOW_FILTER
+	prompt "Slow Filter"
+	default ZMK_INPUT_AMS_AS5600_SLOW_FILTER_16X
+
+config ZMK_INPUT_AMS_AS5600_SLOW_FILTER_16X
+	bool "16x"
+
+config ZMK_INPUT_AMS_AS5600_SLOW_FILTER_8X
+	bool "8x"
+
+config ZMK_INPUT_AMS_AS5600_SLOW_FILTER_4X
+	bool "4x"
+
+config ZMK_INPUT_AMS_AS5600_SLOW_FILTER_2X
+	bool "2x"
+
+endchoice # ZMK_INPUT_AMS_AS5600_SLOW_FILTER
+
+choice ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD
+	prompt "Fast Filter Threshold"
+	default ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD_SLOW_ONLY
+
+config ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD_SLOW_ONLY
+	bool "Slow filter only"
+
+config ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD_6LSB
+	bool "6 LSBs"
+
+config ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD_7LSB
+	bool "7 LSBs"
+
+config ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD_9LSB
+	bool "9 LSBs"
+
+config ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD_18LSB
+	bool "18 LSBs"
+
+config ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD_21LSB
+	bool "21 LSBs"
+
+config ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD_24LSB
+	bool "24 LSBs"
+
+config ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD_10LSB
+	bool "10 LSBs"
+
+endchoice # ZMK_INPUT_AMS_AS5600_FAST_FILTER_THRESHOLD
+
+config ZMK_INPUT_AMS_AS5600_WATCHDOG_TIMER
+	bool "Enable watchdog timer to allow saving power by switching into LMP3 if the angle stays within the watchdog threshold of 4 LSB for at least one minute"
+	default n
+
+config ZMK_INPUT_AMS_AS5600_LOG_AGC
+	bool "Print AGC value to console, to help with tuning the distance between the magnet and the sensor"
+	default n
+
+endif # ZMK_INPUT_AMS_AS5600

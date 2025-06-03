@@ -1,6 +1,6 @@
-# ZMK Module Template
+# ZMK ams AS5600 input driver
 
-This repository contains a template for a ZMK module, as it would most frequently be used. 
+Driver for a [ams AS5600](https://ams-osram.com/products/sensor-solutions/position-sensors/ams-as5600-position-sensor) magnetic rotary position sensor, converting rotation into input scroll values for the [ZMK](https://github.com/zmkfirmware/zmk) keyboard firmware.
 
 ## Usage
 

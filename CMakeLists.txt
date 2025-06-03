@@ -1,0 +1,5 @@
+if(CONFIG_ZMK_INPUT_AMS_AS5600)
+    zephyr_library()
+    zephyr_include_directories(./include)
+    zephyr_library_sources(./src/zmk_input_ams_as5600.c)
+endif()

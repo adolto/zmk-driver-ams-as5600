@@ -1,0 +1,6 @@
+description: |
+  ZMK input scroll driver for ams AS5600 rotary encoder
+
+include: [i2c-device.yaml]
+
+compatible: "zmk,input-ams-as5600"
