@@ -9,11 +9,11 @@ menuconfig ZMK_INPUT_AMS_AS5600
 
 if ZMK_INPUT_AMS_AS5600
 
-config ZMK_INPUT_AMS_AS5600_PERIOD
-	int "Period in milliseconds between sensor reads"
+config ZMK_INPUT_AMS_AS5600_POLL_INTERVAL
+	int "Sample period between sensor reads in ms"
 	default 20
 	help
-	  Sample period in milliseconds
+	  Sample period between sensor reads in ms
 
 choice ZMK_INPUT_AMS_AS5600_POWER_MODE
 	prompt "Power Mode"

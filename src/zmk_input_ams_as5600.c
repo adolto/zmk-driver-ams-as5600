@@ -168,7 +168,7 @@ static int zmk_input_ams_as5600_initialize(const struct device *dev) {
     k_work_init(&data->work, &zmk_input_ams_as5600_work_handler);
 
     k_timer_init(&data->timer, &zmk_input_ams_as5600_timer_handler, NULL);
-    k_timer_start(&data->timer, K_MSEC(CONFIG_ZMK_INPUT_AMS_AS5600_PERIOD), K_MSEC(CONFIG_ZMK_INPUT_AMS_AS5600_PERIOD));
+    k_timer_start(&data->timer, K_MSEC(CONFIG_ZMK_INPUT_AMS_AS5600_POLL_INTERVAL), K_MSEC(CONFIG_ZMK_INPUT_AMS_AS5600_POLL_INTERVAL));
 
     LOG_INF(ZMK_INPUT_AMS_AS5600_LOG_PREFIX "Device %s initialized", dev->name);
 
